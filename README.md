@@ -58,4 +58,4 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md) and [ARCHITECTURE.md](ARCHITECTURE.md) b
 
 ## License
 
-The project code is released under the [MIT License](LICENSE). Third-party dependencies retain their own licenses; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+The project code is released under [GPL-3.0-only](LICENSE). Distributed modified versions must provide corresponding source under GPL-3.0-only. The QZHOU name and logos are not licensed as trademarks. Third-party dependencies retain their own licenses; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

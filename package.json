@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "description": "QZHOU（轻舟） · Local-first AI workspace",
-  "license": "MIT",
+  "license": "GPL-3.0-only",
   "main": "electron/main.js",
   "scripts": {
     "start": "electron electron/main.js",

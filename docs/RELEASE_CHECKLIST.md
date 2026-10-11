@@ -1,6 +1,6 @@
 # Release checklist
 
-This directory is the 0.1.0 Alpha source release under the MIT License.
+This directory is the 0.1.0 Alpha source release under GPL-3.0-only.
 
 Completed for this release:
 
