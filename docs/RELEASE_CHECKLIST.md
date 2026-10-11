@@ -1,13 +1,16 @@
-# 发布说明与待办
+# Release checklist
 
-本目录为 0.1.0 Alpha 源码发布候选，采用 MIT。
+This directory is the 0.1.0 Alpha source release under the MIT License.
 
-已整理：源码白名单副本、依赖清单、通用 Python 启动路径、安装文档、隐私说明和忽略规则。个人运行数据与本机依赖未随包分发。
+Completed for this release:
 
-尚需维护者完成：
+- Whitelisted source copy, dependency manifests, and Windows startup instructions.
+- English README, contribution guide, architecture, and privacy documentation.
+- No personal runtime data, keys, or dependency directories in the repository.
 
-- 在全新 Windows 环境按照 README 安装并检查首次启动、配置、对话和产物操作。
-- 经明确授权后，对实际上游逐项验证；此次打包未发起真实上游请求。
-- 确认随包图标的原始来源及再分发授权；第三方素材不能仅凭代码 MIT 获得授权。
-- 在 GitHub 创建仓库并上传源码；此包不代表已经发布到 GitHub。
-- 如需面向普通用户免配置安装，另行制作 Windows 安装程序及签名发行。
+Before a wider release, maintainers should:
+
+- Install on a clean Windows machine and check first launch, configuration, chat, and artifact actions.
+- With explicit authorization, verify each real provider integration. No upstream requests were made while packaging this release.
+- Confirm the source and redistribution rights for the bundled icon.
+- Provide a signed Windows installer if the project is ready for non-developer users.

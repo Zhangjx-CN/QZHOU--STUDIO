@@ -1,17 +1,17 @@
-# 参与轻舟
+# Contributing to Qingzhou
 
-先阅读 README.md 和需求契约.md。改动应围绕连接外部能力、任务反馈、项目和产物管理，优先改善普通用户的完整使用过程。
+Please read [README.md](README.md) and [ARCHITECTURE.md](ARCHITECTURE.md) first. Contributions should improve the complete experience of connecting external capabilities, reporting task state, managing projects, and finding generated artifacts.
 
-## 开发
+## Development
 
-按 README 安装依赖后，修改 React、Electron 或 Python 源码。前端构建命令为 `npm run build:app`，桌面启动命令为 `npm start`。
+Install dependencies as described in the README. Use `npm run build:app` to build the frontend and `npm start` to run the desktop app.
 
-## 提交
+## Pull requests
 
-说明问题、改动原因、验证方式及已知限制。不要提交 data、密钥、真实会话 ID、个人文件、node_modules 或构建产物。保持 lock 文件与依赖声明一致。
+Explain the problem, the reason for the change, how it was checked, and any known limitations. Do not commit `data/`, keys, real Session IDs, personal files, `node_modules/`, or build output. Keep lock files synchronized with dependency manifests.
 
-未经用户或维护者明确授权，不得调用真实收费接口进行验证；不要在 CI 中访问真实模型或 Agent。不要引入模拟成功到产品逻辑中。
+Do not call paid upstream services without explicit authorization. CI must not access real models or Agents. Do not add simulated success to product logic.
 
-## 问题报告
+## Bug reports
 
-请提供系统版本、操作步骤、预期表现、实际表现和脱敏后的错误信息。安全问题不要附带真实密钥公开提交。
+Include your operating system, reproduction steps, expected behavior, actual behavior, and sanitized error output. Never attach live keys or tokens to a public issue.

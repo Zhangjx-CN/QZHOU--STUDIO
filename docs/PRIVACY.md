@@ -1,19 +1,19 @@
-# 隐私与安全现状
+# Privacy and security status
 
-## 本地保存
+## Local storage
 
-SQLite、Agent 配置、上传文件、对话和生成文件位于 data/。API Key 当前明文保存，包含 Agent JSON 和数据库中的连接字段；字段名称不代表已经加密。共享电脑的其他账户或具备本地文件权限的软件可能读取这些数据。
+SQLite, Agent configuration, uploaded files, conversations, and generated files live under `data/`. API keys are currently stored in plaintext in the Agent JSON and database connection fields; field names do not mean that the values are encrypted. Other accounts or software with access to the machine may read them.
 
-发布源码前应排除整个 data/。如密钥已泄露，应在对应服务撤销并重新生成。
+Exclude the entire `data/` directory before publishing source code. If a key is exposed, revoke it with the provider and create a new one.
 
-## 外部传输
+## Data sent to providers
 
-调用远程模型会发送输入、相关历史以及所附图片或文件内容。上传 CSV、创建 Session 和发送 Agent 消息会真实访问配置的上游。文件下载也可能访问上游提供的地址。上游保存方式、费用及数据政策由其服务决定。
+Remote model calls send your input, relevant history, and attached images or files. CSV uploads, Session creation, and Agent messages make real requests to the configured provider. Downloading a provider artifact may also contact an upstream URL. Provider retention, billing, and data policies apply.
 
-探测通道会连接上游事件流，不能等同于完全离线操作。
+Probe channel connects to the upstream event stream and is not an offline operation.
 
-## 信任边界
+## Trust boundary
 
-本地后端使用访问令牌并默认绑定回环地址。它是单用户桌面程序，不应直接暴露到公网。只连接可信服务，谨慎打开生成的 HTML 或其他主动内容。当前版本没有独立文件沙箱或完整安全审计保障。
+The local backend uses an access token and binds to the loopback interface by default. Qingzhou is a single-user desktop application and should not be exposed to the public internet. Connect only to providers you trust and be careful when opening generated HTML or other active content. There is no independent file sandbox or complete security audit in this release.
 
-代码 MIT 许可不改变上游服务条款，也不赋予生成内容的版权保证。
+The MIT license does not change provider terms and does not guarantee rights to generated content.

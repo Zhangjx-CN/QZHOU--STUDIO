@@ -1,22 +1,22 @@
-# 轻舟 Qingzhou
+# Qingzhou
 
-面向普通用户的本地 AI 工作台：连接模型与云端 Agent，将对话、项目和生成文件集中管理。
+Qingzhou is a local-first AI workspace for everyday users. It connects models and cloud agents, keeps conversations and projects together, and brings generated files back to the desktop.
 
-**当前版本：0.1.0 Alpha，Windows 源码发行版。** 此包需要安装运行环境，不包含可直接双击安装的 EXE 安装程序。此次源码整理未重新实测上游服务，不承诺所有服务及所有文件格式均可用。
+**Status: 0.1.0 Alpha, Windows source release.** This package requires a development environment and does not include a signed installer. The upstream services were not re-run while preparing this release, so availability depends on your provider, model, credentials, and permissions.
 
-## 项目范围
+## Scope
 
-- 在一个窗口管理模型连接、外部 Agent 和项目对话。
-- 通过 OpenAI 兼容接口调用模型，通过 webhook 调用外部工作流。
-- 对接火山方舟 Managed Agents Session 事件流，接收回复和上游提供的文件。
-- 提供上传 CSV、创建 Session 的入口；Environment 和 Agent 在上游控制台创建。
-- 将对话及可接收的产物保存在本地，提供查看、另存等入口。
+- Manage model connections, external agents, and project conversations in one window.
+- Call OpenAI-compatible model APIs and external workflows through webhooks.
+- Connect to Volcano Ark Managed Agents Session event streams and receive provider-generated files.
+- Upload a CSV and create a Session; create the Agent and Environment in the provider console.
+- Save conversations and received artifacts locally, with options to view and export them.
 
-轻舟的设计范围是“调用外部能力、接回结果、本地保存”。上游 Agent 的规划、执行和工具能力由上游服务提供。具体能力取决于所配置接口、模型和权限。
+Qingzhou calls external capabilities, receives the result, and saves it locally. Planning, execution, and tools belong to the upstream Agent service. Actual capabilities depend on the configured provider and permissions.
 
-## Windows 安装与启动
+## Windows setup
 
-准备 Node.js 22、Python 3.12，并确保 node、npm、python 可在终端运行。在解压后的项目根目录打开 PowerShell，依次执行：
+Install Node.js 22 and Python 3.12, then make sure `node`, `npm`, and `python` are available in PowerShell. From the project root:
 
 ```powershell
 python -m venv .venv
@@ -27,37 +27,35 @@ npm run build:app
 npm start
 ```
 
-安装依赖需要联网。Electron 会启动本地 Python 服务，默认端口 8000。首次启动后，在“模型与连接”或“Agent 库”填写自己的服务配置；默认不附带个人连接、密钥、对话或产物。
+Dependency installation requires network access. Electron starts the local Python service on port 8000. On first launch, add your own connections in **Models & Connections** or **Agent Library**. No personal connections, keys, conversations, or artifacts are included.
 
-之后可在项目目录执行 `npm start`。Python 环境放在项目内的 `.venv`；也可通过 `LIGHTBOAT_PYTHON` 指定 Python 可执行文件的完整路径。
+Run `npm start` again from the project root. To use another Python executable, set `LIGHTBOAT_PYTHON` to its full path.
 
-## 数据与费用
+## Data, privacy, and cost
 
-- 运行数据写入项目的 `data/`，含本地数据库、Agent 配置、上传文件及工作区。
-- **当前 API Key 为本地明文存储。** 不要分享运行后的 data 文件夹或将它提交到 GitHub。
-- “本地优先”描述存储位置。远程模型和 Agent 会收到你发送的内容、相关历史及附件。
-- 发送任务、上传 CSV、创建 Session 等会实际访问上游，可能产生费用。当前版本没有默认拦截每次调用的预算闸门，费用与配额由上游账户管理。
-- 关闭窗口不保证取消上游已开始的任务；取消及计费规则取决于上游。
-- 请在“探测通道”之前确认上游权限及政策；该入口只用于连接探测，不提交推理消息。
+- Runtime data is stored under `data/`, including the local database, Agent configuration, uploads, and workspace files.
+- **API keys are currently stored in plaintext on the local machine.** Never share a populated `data/` directory or commit it to GitHub.
+- “Local-first” describes where data is stored. Remote models and Agents receive the content, history, and attachments you send them.
+- Sending a task, uploading a CSV, or creating a Session makes a real upstream request and may incur charges. This release does not include a default per-call budget gate; provider quotas and billing apply.
+- Closing the window may not cancel a task already running upstream. Cancellation and billing are controlled by the provider.
+- Check provider access and policies before using **Probe channel**. It opens the event stream for connectivity checks but does not submit an inference message.
 
-详细说明见 [隐私与安全](docs/PRIVACY.md)。
+See [Privacy and Security](docs/PRIVACY.md).
 
-## 目录
+## Repository layout
 
 ```text
-app/src/           React 界面和前端入口
-electron/          桌面窗口、启动与本地文件交互
-server/app/api.py  本地 API 入口
-server/app/adapters.py  外部服务适配器
-server/app/        本地数据、项目及相关支持代码
+app/src/                   React UI and frontend entry points
+electron/                  Desktop window, startup, and local file access
+server/app/api.py          Local API entry point
+server/app/adapters.py     External service adapters
+server/app/                Local data, project, and support code
 ```
 
-## 参与贡献
+## Contributing
 
-参见 [CONTRIBUTING.md](CONTRIBUTING.md) 和 [需求契约](需求契约.md)。
+Read [CONTRIBUTING.md](CONTRIBUTING.md) and [ARCHITECTURE.md](ARCHITECTURE.md) before changing the project. Please include reproduction steps and sanitized errors in issues. Remove keys, tokens, personal data, and private provider URLs from reports. Windows development is the current focus; signed installers, cross-platform distribution, and an independent security audit are not provided yet.
 
-提交问题时请描述复现步骤及错误信息，并移除密钥、令牌、个人数据和服务私有地址。目前以 Windows 开发运行方式为主，尚未提供签名安装包、跨平台发行保障或经过独立安全审计的承诺。
+## License
 
-## 许可证
-
-项目代码采用 [MIT](LICENSE) 许可证。第三方依赖遵循各自许可证，参见 [第三方说明](THIRD_PARTY_NOTICES.md)。
+The project code is released under the [MIT License](LICENSE). Third-party dependencies retain their own licenses; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
