@@ -1,0 +1,15 @@
+{
+  "name": "ai-brand-os",
+  "private": true,
+  "version": "0.1.0",
+  "description": "轻舟 · 本地优先 AI 工作台",
+  "license": "MIT",
+  "main": "electron/main.js",
+  "scripts": {
+    "start": "electron electron/main.js",
+    "build:app": "cd app && npm run build"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0"
+  }
+}
