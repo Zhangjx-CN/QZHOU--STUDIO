@@ -8,6 +8,7 @@ import AgentLibrary from "./pages/AgentLibrary";
 import ProjectFiles from "./pages/ProjectFiles";
 import { api, ensureToken } from "./api/client";
 import type { Project } from "./api/types";
+import { useI18n } from "./i18n";
 
 // 极简 hash 路由（不引入 react-router 依赖）
 type View = "dashboard" | "chat" | "models" | "agents" | "files";
@@ -30,6 +31,7 @@ function useHashView(): [View, (v: View) => void] {
 }
 
 export default function App() {
+  const { language, setLanguage, t } = useI18n();
   const [view, go] = useHashView();
   const [projects, setProjects] = useState<Project[]>([]);
   const [activeProject, setActiveProject] = useState<Project | null>(null);
@@ -221,12 +223,12 @@ export default function App() {
   const onAutoProject = (p: Project) => { setActiveProject(p); refreshProjects(); };
 
   const navItems = useMemo(() => ([
-    { key: "chat" as const, label: "工作台", icon: "✦" },
-    { key: "agents" as const, label: "智能体", icon: "◇" },
-    { key: "models" as const, label: "连接管理", icon: "⌘" },
-    { key: "dashboard" as const, label: "调用概览", icon: "▥" },
-    { key: "files" as const, label: "项目文件", icon: "▤" },
-  ]), []);
+    { key: "chat" as const, label: t("chat"), icon: "✦" },
+    { key: "agents" as const, label: t("agents"), icon: "◇" },
+    { key: "models" as const, label: t("models"), icon: "⌘" },
+    { key: "dashboard" as const, label: t("dashboard"), icon: "▥" },
+    { key: "files" as const, label: t("files"), icon: "▤" },
+  ]), [t]);
 
   const win = (window as unknown as { aibo?: { winMin?: () => void; winMax?: () => void; winClose?: () => void } }).aibo;
   return (
@@ -241,10 +243,17 @@ export default function App() {
         <aside className="sidebar">
           <div className="brand">
             <span className="brand-mark" aria-hidden="true"><img src="./icon-circle.png" alt="" /></span>
-            <span className="brand-copy"><span className="brand-name">轻舟</span><span className="brand-caption">AI 工作台</span></span>
+            <span className="brand-copy"><span className="brand-name">{t("brand")}</span><span className="brand-caption">{t("caption")}</span></span>
+            <label className="language-switcher" title={t("language")}>
+              <span className="sr-only">{t("language")}</span>
+              <select value={language} onChange={e => setLanguage(e.target.value as "zh-CN" | "en-US")} aria-label={t("language")}>
+                <option value="zh-CN">中</option>
+                <option value="en-US">EN</option>
+              </select>
+            </label>
           </div>
 
-          <div className="nav-section-label">工作空间</div>
+          <div className="nav-section-label">{t("workspace")}</div>
           <nav className="nav">
             {navItems.map(n => (
               <button key={n.key} className={`nav-item ${view === n.key ? "on" : ""}`} onClick={() => go(n.key)}>
@@ -256,7 +265,7 @@ export default function App() {
 
           <section className="project-section">
             <div className="project-toolbar">
-              <span>项目</span>
+              <span>{t("projects")}</span>
               <div className="project-toolbar-actions">
                 <button className={`project-tool-btn ${projectAddOpen ? "on" : ""}`} title="新建" aria-label="新建" onMouseDown={e => {
                   e.stopPropagation();
@@ -332,13 +341,13 @@ export default function App() {
                 );
               })}
             </div>}
-            {!projectsCollapsed && projects.length > 0 && visibleProjects.length === 0 && <div className="project-empty">最近 14 天没有活跃项目</div>}
-            {!projectsCollapsed && projects.length === 0 && <button className="project-empty project-empty-action" onClick={openCreateProject}>＋ 创建你的第一个项目</button>}
+            {!projectsCollapsed && projects.length > 0 && visibleProjects.length === 0 && <div className="project-empty">{t("noActive")}</div>}
+            {!projectsCollapsed && projects.length === 0 && <button className="project-empty project-empty-action" onClick={openCreateProject}>{t("firstProject")}</button>}
           </section>
 
           <div className="side-foot">
             <span aria-hidden="true">▤</span>
-            <span><b>你的工作，留在这里</b><small>项目与产物保存在本机</small></span>
+            <span><b>{t("localWork")}</b><small>{t("localWorkSub")}</small></span>
           </div>
         </aside>
 
@@ -369,22 +378,22 @@ export default function App() {
         {editingProject && (
           <div className="modal-mask" onClick={() => !editSaving && setEditingProject(null)}>
             <div className="modal" onClick={e => e.stopPropagation()}>
-              <h3>编辑项目</h3>
+              <h3>{t("editProject")}</h3>
               <div className="field">
-                <label>项目名称</label>
+                <label>{t("projectName")}</label>
                 <input value={editName} onChange={e => setEditName(e.target.value)} autoFocus />
               </div>
               <div className="field">
-                <label>项目说明</label>
+                <label>{t("projectDescription")}</label>
                 <textarea value={editDescription} onChange={e => setEditDescription(e.target.value)} rows={3} />
               </div>
               <div className="field">
-                <label>项目文件夹</label>
-                <input value={editFolder} onChange={e => setEditFolder(e.target.value)} placeholder="可留空" />
+                <label>{t("projectFolder")}</label>
+                <input value={editFolder} onChange={e => setEditFolder(e.target.value)} placeholder={t("noFolder")} />
               </div>
               <div className="modal-actions">
-                <button className="btn" onClick={() => setEditingProject(null)} disabled={editSaving}>取消</button>
-                <button className="btn primary" onClick={saveEdit} disabled={editSaving || !editName.trim()}>{editSaving ? "保存中…" : "保存修改"}</button>
+                <button className="btn" onClick={() => setEditingProject(null)} disabled={editSaving}>{t("cancel")}</button>
+                <button className="btn primary" onClick={saveEdit} disabled={editSaving || !editName.trim()}>{editSaving ? t("saving") : t("save")}</button>
               </div>
             </div>
           </div>
@@ -392,14 +401,14 @@ export default function App() {
         {creatingProject && (
           <div className="modal-mask" onClick={() => !createSaving && setCreatingProject(false)}>
             <div className="modal" onClick={e => e.stopPropagation()}>
-              <h3>创建新项目</h3>
-              <div className="field"><label>项目名称</label><input value={newProjectName} onChange={e => { setNewProjectName(e.target.value); setCreateError(""); }} autoFocus /></div>
-              <div className="field"><label>项目说明</label><textarea value={newProjectDescription} onChange={e => setNewProjectDescription(e.target.value)} rows={3} /></div>
-              <div className="field"><label>项目文件夹</label><input value={newProjectFolder} onChange={e => setNewProjectFolder(e.target.value)} placeholder="可留空" /></div>
+              <h3>{t("createProject")}</h3>
+              <div className="field"><label>{t("projectName")}</label><input value={newProjectName} onChange={e => { setNewProjectName(e.target.value); setCreateError(""); }} autoFocus /></div>
+              <div className="field"><label>{t("projectDescription")}</label><textarea value={newProjectDescription} onChange={e => setNewProjectDescription(e.target.value)} rows={3} /></div>
+              <div className="field"><label>{t("projectFolder")}</label><input value={newProjectFolder} onChange={e => setNewProjectFolder(e.target.value)} placeholder={t("noFolder")} /></div>
               {createError && <div className="project-create-error">{createError}</div>}
               <div className="modal-actions">
-                <button className="btn" onClick={() => setCreatingProject(false)} disabled={createSaving}>取消</button>
-                <button className="btn primary" onClick={createProject} disabled={createSaving || !newProjectName.trim()}>{createSaving ? "创建中…" : "创建项目"}</button>
+                <button className="btn" onClick={() => setCreatingProject(false)} disabled={createSaving}>{t("cancel")}</button>
+                <button className="btn primary" onClick={createProject} disabled={createSaving || !newProjectName.trim()}>{createSaving ? t("creating") : t("createProject")}</button>
               </div>
             </div>
           </div>
