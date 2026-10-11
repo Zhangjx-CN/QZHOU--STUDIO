@@ -14,6 +14,6 @@ Probe channel connects to the upstream event stream and is not an offline operat
 
 ## Trust boundary
 
-The local backend uses an access token and binds to the loopback interface by default. Qingzhou is a single-user desktop application and should not be exposed to the public internet. Connect only to providers you trust and be careful when opening generated HTML or other active content. There is no independent file sandbox or complete security audit in this release.
+The local backend uses an access token and binds to the loopback interface by default. QZHOU（轻舟） is a single-user desktop application and should not be exposed to the public internet. Connect only to providers you trust and be careful when opening generated HTML or other active content. There is no independent file sandbox or complete security audit in this release.
 
 The MIT license does not change provider terms and does not guarantee rights to generated content.

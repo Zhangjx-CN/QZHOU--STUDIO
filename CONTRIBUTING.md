@@ -1,4 +1,4 @@
-# Contributing to Qingzhou
+# Contributing to QZHOU（轻舟）
 
 Please read [README.md](README.md) and [ARCHITECTURE.md](ARCHITECTURE.md) first. Contributions should improve the complete experience of connecting external capabilities, reporting task state, managing projects, and finding generated artifacts.
 

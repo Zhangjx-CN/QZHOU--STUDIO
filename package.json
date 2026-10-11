@@ -1,8 +1,8 @@
 {
-  "name": "ai-brand-os",
+  "name": "qzhou",
   "private": true,
   "version": "0.1.0",
-  "description": "轻舟 · 本地优先 AI 工作台",
+  "description": "QZHOU（轻舟） · Local-first AI workspace",
   "license": "MIT",
   "main": "electron/main.js",
   "scripts": {

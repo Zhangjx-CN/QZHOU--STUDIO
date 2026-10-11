@@ -1,6 +1,6 @@
 # Architecture and product boundary
 
-Qingzhou is a local-first desktop shell: call an external capability, receive the result, and save it locally.
+QZHOU（轻舟） is a local-first desktop shell: call an external capability, receive the result, and save it locally.
 
 ## Two entry layers
 
@@ -11,7 +11,7 @@ Local database and UI support modules serve these entry points. They are not a r
 
 ## What belongs upstream
 
-Agent planning, tool execution, workflow orchestration, model hosting, and Agent or Environment creation belong to the provider. Qingzhou connects to those services and presents their status and results. It does not recreate their control plane.
+Agent planning, tool execution, workflow orchestration, model hosting, and Agent or Environment creation belong to the provider. QZHOU（轻舟） connects to those services and presents their status and results. It does not recreate their control plane.
 
 ## Product rules
 

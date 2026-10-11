@@ -918,7 +918,7 @@ def upload_agent_file(base_url, api_key, local_csv_path):
         raise FileNotFoundError(f"CSV 文件不存在：{local_csv_path}")
     if os.path.splitext(path)[1].lower() != ".csv":
         raise ValueError("只允许上传 .csv 文件")
-    boundary = f"----QingzhouBoundary{uuid.uuid4().hex}"
+    boundary = f"----QZHOUBoundary{uuid.uuid4().hex}"
     filename = os.path.basename(path)
     with open(path, "rb") as f:
         data = f.read()

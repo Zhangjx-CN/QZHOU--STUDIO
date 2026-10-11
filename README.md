@@ -1,6 +1,6 @@
-# Qingzhou
+# QZHOU（轻舟）
 
-Qingzhou is a local-first AI workspace for everyday users. It connects models and cloud agents, keeps conversations and projects together, and brings generated files back to the desktop.
+QZHOU（轻舟） is a local-first AI workspace for everyday users. It connects models and cloud agents, keeps conversations and projects together, and brings generated files back to the desktop.
 
 **Status: 0.1.0 Alpha, Windows source release.** This package requires a development environment and does not include a signed installer. The upstream services were not re-run while preparing this release, so availability depends on your provider, model, credentials, and permissions.
 
@@ -12,7 +12,7 @@ Qingzhou is a local-first AI workspace for everyday users. It connects models an
 - Upload a CSV and create a Session; create the Agent and Environment in the provider console.
 - Save conversations and received artifacts locally, with options to view and export them.
 
-Qingzhou calls external capabilities, receives the result, and saves it locally. Planning, execution, and tools belong to the upstream Agent service. Actual capabilities depend on the configured provider and permissions.
+QZHOU（轻舟） calls external capabilities, receives the result, and saves it locally. Planning, execution, and tools belong to the upstream Agent service. Actual capabilities depend on the configured provider and permissions.
 
 ## Windows setup
 
